@@ -34,6 +34,9 @@ const PORT = process.env.PORT || 8080;
 
 
 // API routes
+app.get('/', (req, res) => {
+  res.json({ message: "API is working" });
+});
 app.use('/api/users', userRouter);
 app.use('/api/properties', propertyRouter);
 app.use('/api/tenants', tenantRouter);
@@ -43,14 +46,14 @@ app.use('/api/adminActions', adminActionRouter);
 app.use('/api', tenantActionsRouter);
 
 
-// Serve static assets if in production
-if (process.env.NODE_ENV === 'production') {
-  const __dirname = path.resolve();
-  app.use(express.static(path.join(__dirname, '../client/build')));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
-  });
-}
+// // Serve static assets if in production
+// if (process.env.NODE_ENV === 'production') {
+//   const __dirname = path.resolve();
+//   app.use(express.static(path.join(__dirname, '../client/build')));
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../client/build/index.html'));
+//   });
+// }
 
 
 // Start the server
